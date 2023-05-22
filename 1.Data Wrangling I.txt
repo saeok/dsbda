@@ -1,0 +1,118 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+csv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+
+col_names = ['Sepal_Length','Sepal_Width','Petal_Length','Petal_Width','Species']
+
+dataset = pd.read_csv(csv_url, names = col_names)
+
+dataset.head(n=5) 
+
+dataset.tail(n=5)
+
+dataset.index
+
+dataset.columns
+
+dataset.shape
+
+dataset.dtypes
+
+dataset.columns.values
+
+dataset.describe(include='all')
+
+dataset['Sepal_Length'] 
+
+dataset.sort_index(axis=1,ascending=False)
+
+dataset.sort_values(by="Sepal_Length")
+
+dataset.iloc[5] 
+
+dataset[0:3]
+
+dataset.loc[:, ["Sepal_Length","Sepal_Width"]]
+
+dataset.iloc[:n, :]
+
+dataset.iloc[:, :n] 
+
+dataset.iloc[:, :n] 
+
+dataset.iloc[3:5, 0:2] 
+
+dataset.iloc[[1, 2,4], [0, 2]
+
+dataset.iloc[1:3, :] 
+
+dataset.iloc[:, 1:3]  
+
+dataset.iloc[1, 1] 
+
+dataset['Sepal_Length'].iloc[5]
+
+cols_2_4=dataset.columns[2:4]
+dataset[cols_2_4]
+
+cols_2_4=dataset.columns[2:4]
+dataset[cols_2_4]
+
+dataset.isnull()
+
+dataset.isnull().any()
+
+dataset.isnull().sum().sum()
+
+dataset.isnull().sum(axis = 1)
+
+dataset.isnull().sum()
+
+dataset.isna().sum()
+
+datasset.Sepal_Length.isnull().sum()
+
+dataset.groupby(['Sepal_Length'])['Sepal_Width'].apply(lambda x:x.isnull().sum())
+
+dataset.dtypes
+
+df['Petal_Length']= df['Petal_Length'].astype("int")
+
+import numpy as np
+import pandas as pd
+from sklearn import preprocessing
+
+iris = pd.read_csv('Iris.csv')
+iris.head()
+
+min_max_scaler = preprocessing.MinMaxScaler()
+x = iris.iloc[:,:2]
+x_scaled = min_max_scaler.fit_transform(x)
+iris_normalized = pd.DataFrame(x_scaled)
+iris_normalized
+
+iris['Species'].unique()
+array(['Iris-setosa', 'Iris-versicolor', 'Iris-virginica'], dtype=object)
+label_encoder = preprocessing.LabelEncoder()
+iris['Species'] = label_encoder.fit_transform(iris['Species'])
+iris['Species'].unique()
+array([0, 1, 2])
+features_iris = iris.drop(["Species"],axis = 1)
+features_iris
+
+enc = preprocessing.OneHotEncoder()
+enc_iris=pd.DataFrame(enc.fit_transform(iris[['Species']]).toarray())
+iris_encode = features_iris.join(enc_iris)
+iris_encode
+
+enc = preprocessing.OneHotEncoder()
+enc_iris=pd.DataFrame(enc.fit_transform(iris[['Species']]).toarray())
+iris_encode = features_iris.join(enc_iris)
+iris_encode
+
+one_hot_iris = pd.get_dummies(iris, prefix="Species",
+columns=['Species'], drop_first=True)
+one_hot_iris
