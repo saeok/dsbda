@@ -1,0 +1,60 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from seaborn import load_dataset
+data = pd.read_csv("titanic.csv")
+tips = load_dataset("tips")
+dataset=sns.load_dataset("titanic")
+
+sns.countplot(data['Survived'])
+plt.show()
+
+data['Sex'].value_counts().plot(kind="pie", autopct="%.2f")
+plt.show()
+
+data.head()
+
+tips.head()
+
+sns.countplot(data['Survived'])
+plt.show()
+
+data['Sex'].value_counts().plot(kind="pie", autopct="%.2f")
+plt.show()
+
+plt.hist(data['class'], bins=5)
+plt.show()
+
+sns.distplot(data['Survived'])
+plt.show()
+
+plt.scatter(tips["total_bill"], tips["tip"])
+plt.show()
+
+sns.barplot(dataset['Pclass'], dataset['Age'])
+plt.show()
+
+sns.barplot(dataset['Pclass'], dataset['Fare'],hue=dataset["Sex"])
+plt.show()
+
+sns.boxplot(data['Sex'], data["Age"])
+plt.show()
+
+sns.boxplot(data['Sex'], data["Age"], data["Survived"])
+plt.show()
+
+sns.distplot(data[data['Survived'] == 0]['Age'], hist=False, color="blue")
+sns.distplot(data[data['Survived'] == 1]['Age'], hist=False, color="orange")
+plt.show()
+
+pd.crosstab(data['Pclass'], data['Survived'])
+
+sns.heatmap(pd.crosstab(data['Pclass'], data['Survived']))
+plt.show()
+
+sns.clustermap(pd.crosstab(data['Parch'], data['Survived']))
+plt.show()
+
+sns.regplot(x=tips["total_bill"],y=tips["tip"],fit_reg=False);
+plt.show()
