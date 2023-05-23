@@ -1,0 +1,68 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df=pd.read_csv("iris.csv")
+df.head(16)
+
+df.mean()
+
+df.loc[:,'SepalLengthCm'].mean()
+
+df.mean(axis=1)[0:4]
+
+df.median()
+
+df.loc[:,'PetalLengthCm'].median()
+
+df.median(axis=1)[0:4]
+
+df.mode()
+
+df.loc[:,'PetalWidthCm'].mode()
+
+df.min()
+
+df.loc[:,'SepalWidthCm'].min(skipna = False)
+
+df.max()
+
+df.loc[:,'SepalWidthCm'].max(skipna = False)
+
+df.std()
+
+df.loc[:,'PetalWidthCm'].std()
+
+df.std(axis=1)[0:4]
+
+df.groupby(['SepalLengthCm'])['PetalWidthCm'].mean()
+
+df_u=df.rename(columns= {'PetalWidthCm)':'petal_w'},inplace=False)
+
+(df_u.groupby(['PetalWidthCm']).PetalWidthCm.mean())
+
+from sklearn import preprocessing
+enc = preprocessing.OneHotEncoder()
+enc_df = pd.DataFrame(enc.fit_transform(df[['PetalWidthCm']]).toarray())
+enc_df
+
+df_encode =df_u.join(enc_df)
+df_encode
+
+csv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
+col_names =['SepalLengthCm','SepalWidthCm','PetalLengthCm','PetalWidthCm','Species']
+
+iris = pd.read_csv(csv_url, names = col_names)
+
+irisSet = (iris['Species']== 'Iris-setosa')
+print('Iris-setosa')
+print(iris[irisSet].describe())
+
+irisSet = (iris['Species']== 'Iris-setosa')
+print('Iris-setosa')
+print(iris[irisSet].describe())
+
+irisVir = (iris['Species']== 'Iris-virginica')
+print('Iris-virginica')
+print(iris[irisVir].describe())
